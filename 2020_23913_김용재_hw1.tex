@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{\vspace{-5.0cm}homework}
+\author{Kim Yong Jae}
+\date{April 2020}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{anyfontsize} 
+  
+
+\begin{document}
+
+\maketitle
+
+\section*{1.6.3 Computing Expected Values}
+Integrating over $(\Omega,{F},{P})$ is nice in theory, but to do computations we have to shift to a space on which we can do calculus. In most cases, we
+will apply the next result with ${S}=$ \begin{math}\mathbf{R}^d\end{math}
+
+\section*{Theorem 1.6.9 Change of variables formula}
+Let ${X}$ be a random element of (S,\begin{math}\mathbf{S}\end{math}) with distribution $\mu$, i.e., $\mu(A) = P(X \in A)$. If ${f}$ is a measurable function from (S,\begin{math}\mathbf{S}\end{math}) to (\begin{math}\mathbf{R}\end{math},${R}$) so that $f \geq 0$ or $E|f(X)| < \infty$, then
+$$Ef(X) = \int_S f(y)\mu(dy)$$
+
+\section*{Remark. {\normalsize\normalfont To explain the name, write $h$ for $X$ and $P\circ h^{-1}$ for $\mu$ to get}}
+$$\int_\Omega f(h(\omega))dP = \int_S f(y)d(P\circ h^{-1})$$
+
+$Proof.$ We will prove this result by verifying it in four increasingly more general special cases that parallel the way that the integral was defined in Section 1.4. The reader should note the method employed, since it will be used several times below.
+
+$CASE$ 1: Indicator functions. If $B \in S$ and $f = 1_{B}$ then recalling the relevant definitions shows
+$$E1_{B}(X) = P(X \in B) = \mu(B) = \int_S 1_{B}(y)\mu(dy)$$
+
+$CASE$ 2: Simple functions. Let $f(x) = \sum_{m=1}^{n} c_m 1_{B_m}$ where $c_m \in$ \begin{math}\mathbf{R}\end{math}, 
+$B_m \in$ \begin{math}\mathbf{S}\end{math}. The linearity of expected value, the result of Case 1, and the linearity of integration imply
+\begin{eqnarray}
+Ef(X) & = & \sum_{m=1}^{n} c_m E1_{B_m}(X) \nonumber\\
+& =& \sum_{m=1}^{n} c_m \int_S 1_{B_m}(y)\mu (dy) = \int_S f(y)\mu (dy) \nonumber
+\end{eqnarray}
+
+$CASE$ 3: Nonnegative functions. Let if $f \geq 0$ and we let 
+$$ f_n (x) = ([2^n f(x)]/2^n) \wedge n$$
+where [x] = the largest integer $\leq x$ and $a\wedge b = min \{a,b\}$, then the $f_n$ are simple and $f_n \uparrow f$, so using the result for simple functions and the monotone convergence theorem:
+$$Ef(X) = \lim_{n} Ef_n(X) = \lim_{n} \int_S f_n(y)\mu (dy) = \int_S f(y)\mu (dy)$$
+\newpage
+$CASE$ 4: Integrable functions. The general case now follows by writing $f(x) = f(x)^+ - f(x)^-$. The condition $E|f(X)| < \infty$ guarantees that $Ef(X)^+$ and $Ef(X)^-$ are finite. So using the result for nonnegative functions and linearity of expected value and integration:
+\begin{eqnarray}
+Ef(X) = Ef(X)^+ - Ef(X)^- &=& \int_S f(y)^+\mu (dy) - \int_S f(y)^-\mu (dy) \nonumber\\
+&=& \int_S f(y)\mu (dy) \nonumber
+\end{eqnarray}
+which completes the proof.
+\end{document}
